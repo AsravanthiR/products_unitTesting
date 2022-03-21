@@ -88,23 +88,14 @@ const products = require("../products.json");
 //   const storage = new productStorage(products);
 //   describe("Test 1: get ids of an existing model with default data", () => {
 //     const existingTestValues = [
-//       {
-//         id: 1,
-//         model: "Future 2025",
-//       },
-//       {
-//         id: 2,
-//         model: "Beast II",
-//       },
-//       {
-//         id: 3,
-//         model: "MaxEffect 2000",
-//       },
+//       ["Future 2025", [1]],
+//       ["Beast II", [2]],
+//       ["MaxEffect 2000", [3]],
 //     ];
 //     test.each(existingTestValues)(
 //       "testing: %s return %s",
-//       (modelValue, expectedId) => {
-//         expect(storage.getAllIdsByModel(modelValue)).toEqual(expectedId);
+//       (value, expectedId) => {
+//         expect(storage.getAllIdsByModel(value)).toEqual(expectedId);
 //       }
 //     );
 //   });
@@ -115,23 +106,6 @@ const products = require("../products.json");
 
 //   test("Test 3: get ids by model with no parameter throws an error 'missing parameter'", () => {
 //     expect(() => storage.getAllIdsByModel()).toThrow("missing parameter");
-//   });
-// });
-
-// describe("testing method getAllProductTypes", () => {
-//   test("Test 1: use default data", () => {
-//     const storage = new productStorage(products);
-//     expect(storage.getAllProductTypes()).toEqual([
-//       "moccamaster",
-//       "vacuum cleaner",
-//       "radio",
-//     ]);
-//   });
-
-//   test("Test 2: get ids of a non existing model, return empty array", () => {
-//     const storage = new productStorage(products);
-
-//     expect(storage.getAllIdsByModel("x")).toEqual([]);
 //   });
 // });
 
@@ -195,9 +169,8 @@ const products = require("../products.json");
 
 //   describe("Test 2: get product accessories from default data", () => {
 //     const testValues = [
-//       [productId, expectedAccessoriesArray][
-//         (1, ["cleaning brush", "coffee cup"])
-//       ],
+//       //[productId, expectedAccessoriesArray]
+//       [1, ["cleaning brush", "coffee cup"]],
 //       [2, ["bags", "filter set", "delux brush set"]],
 //       [3, []],
 //     ];
@@ -210,77 +183,77 @@ const products = require("../products.json");
 //       }
 //     );
 //   });
-//});
+// });
 
-describe(" getPriceWithoutExtras(id)", () => {
-  const storage = new productStorage(products);
-  test("Test 1: parameter missing, throw exception", () => {
-    expect(() => storage.getPriceWithoutExtras()).toThrow("missing parameter");
-  });
+// describe(" getPriceWithoutExtras(id)", () => {
+//   const storage = new productStorage(products);
+//   test("Test 1: parameter missing, throw exception", () => {
+//     expect(() => storage.getPriceWithoutExtras()).toThrow("missing parameter");
+//   });
 
-  test("Test 2: no product with the given id", () => {
-    expect(() => storage.getPriceWithoutExtras(56)).toThrow(
-      "nothing found with given id"
-    );
-  });
+//   test("Test 2: no product with the given id", () => {
+//     expect(() => storage.getPriceWithoutExtras(56)).toThrow(
+//       "nothing found with given id"
+//     );
+//   });
 
-  describe("Test 3: price of product from default data", () => {
-    const testValues = [
-      {
-        id: 1,
-        model: "Future 2025",
-        type: "moccamaster",
-        accessories: ["cleaning brush", "coffee cup"],
-        price: 99,
-        extras: [
-          {
-            name: "coffee",
-            price: 15,
-          },
-          {
-            name: "spoon",
-            price: 10,
-          },
-          {
-            name: "color gold",
-            price: 100,
-          },
-        ],
-      },
-      {
-        id: 2,
-        model: "Beast II",
-        type: "vacuum cleaner",
-        accessories: ["bags", "filter set", "delux brush set"],
-        price: 99,
-        extras: [
-          {
-            name: "manual",
-            price: 15,
-          },
-          {
-            name: "warranty",
-            price: 10,
-          },
-        ],
-      },
-      {
-        id: 3,
-        model: "MaxEffect 2000",
-        type: "radio",
-        accessories: [],
-        price: 29,
-        extras: [],
-      },
-    ];
-    test.each(testValues)(
-      "product %s: price without extras is %p",
-      (productId, expectedPrice) => {
-        expect(storage.getPriceWithoutExtras(productId)).toEqual(expectedPrice);
-      }
-    );
-  });
-});
+//   describe("Test 3: price of product from default data", () => {
+//     const testValues = [
+//       {
+//         id: 1,
+//         model: "Future 2025",
+//         type: "moccamaster",
+//         accessories: ["cleaning brush", "coffee cup"],
+//         price: 99,
+//         extras: [
+//           {
+//             name: "coffee",
+//             price: 15,
+//           },
+//           {
+//             name: "spoon",
+//             price: 10,
+//           },
+//           {
+//             name: "color gold",
+//             price: 100,
+//           },
+//         ],
+//       },
+//       {
+//         id: 2,
+//         model: "Beast II",
+//         type: "vacuum cleaner",
+//         accessories: ["bags", "filter set", "delux brush set"],
+//         price: 99,
+//         extras: [
+//           {
+//             name: "manual",
+//             price: 15,
+//           },
+//           {
+//             name: "warranty",
+//             price: 10,
+//           },
+//         ],
+//       },
+//       {
+//         id: 3,
+//         model: "MaxEffect 2000",
+//         type: "radio",
+//         accessories: [],
+//         price: 29,
+//         extras: [],
+//       },
+//     ];
+//     test.each(testValues)(
+//       "product %s: price without extras is %p",
+//       (productId, expectedPrice) => {
+//         expect(storage.getPriceWithoutExtras(productId)).toEqual(expectedPrice);
+//       }
+//     );
+//   });
+// });
 
 // describe(" getTotalPrice(id)", () => {
 //   const storage = new productStorage(products);
