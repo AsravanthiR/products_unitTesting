@@ -20,17 +20,17 @@ module.exports = class ProductStorage {
     } else throw new Error(" missing parameter");
   } //end of getById
 
-  getAllIdsByModel(value) {
-    const id = [];
-    if (value) {
+  getAllIdsByModel(model) {
+    const ids = [];
+    if (model) {
       for (let product of this.productStorage) {
-        if (product.value === value) {
-          id.push(product.id);
+        if (product.model === model) {
+          ids.push(product.id);
         }
       }
-      return id;
-    } else throw new Error(" missing parameter");
-  } //end of  getAllIdsByModel(value)
+      return ids;
+    } else throw new Error("missing parameter ");
+  } //end of  getAllIdsByModel(model)
 
   getAllProductTypes() {
     const types = [];
